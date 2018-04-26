@@ -1,0 +1,6 @@
+---
+# defaults file for /etc/ansible/roles/testrole
+value1: file1
+value2: /root/dir2
+
+

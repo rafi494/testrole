@@ -1,0 +1,37 @@
+---
+# tasks file for /etc/ansible/roles/testrole
+- command: uptime
+
+- yum:
+   name: httpd
+   state: present
+
+- service: name=httpd state=started
+
+- command: mv /usr/share/httpd/noindex/index.html /usr/share/httpd/noindex/index.html.bak
+  ignore_errors: yes
+
+#- copy:
+#    src: ../files/index.html
+#    dest: /usr/share/httpd/noindex/index.html
+- template:
+    src: ../templates/index.html.j2
+    dest: /usr/share/httpd/noindex/index.html
+  
+- name: testing the handler function
+  yum: 
+    name: nmap
+    state: present
+  notify:
+  - new package
+
+- name: using default value
+  command: touch /tmp/{{ value1 }}
+
+- include_vars: ../vars/main.yml
+
+- name: using vars file
+  command: useradd "{{ item }}"
+  with_items:
+    - "{{ userslist.user1 }}"
+    - "{{ userslist.user2 }}"

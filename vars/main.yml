@@ -1,0 +1,6 @@
+---
+# vars file for /etc/ansible/roles/testrole
+userslist:
+  user1: tom
+  user2: jerry
+

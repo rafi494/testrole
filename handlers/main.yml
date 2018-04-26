@@ -1,0 +1,4 @@
+---
+# handlers file for /etc/ansible/roles/testrole
+- name: new package
+  command: echo "handler is used now"
